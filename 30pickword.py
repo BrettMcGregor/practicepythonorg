@@ -11,8 +11,5 @@ it in the same directory as your Python code.
 import random
 
 with open("sowpods.txt", "r") as f:
-    line = f.readline()
-    while line:
-        line = f.readline()
-
-print("The entire file has been read!")
+    words = list(f)
+print(random.choice(words).strip())    
