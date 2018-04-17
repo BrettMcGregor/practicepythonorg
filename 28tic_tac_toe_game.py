@@ -27,14 +27,16 @@ reuse work that has already been done!
 #----------------------------------------------------------------------------
 # Draw the user moves
 
-#user input for move coordinates row/col Note that start counting indexes here from one
+#user input for move coordinates row/col Note that we start counting indexes here from one
 #rather than zero
 
 def player_move(player):
     print("\nPlayer {} move:".format(player))
     while True:
         try:
-            location = input("\nEnter row, column coordinates (r,c) >")
+            location = []
+            location.append(input("\nEnter row, column coordinates (r,c) >"))
+            return location
             if game[int(location[0])-1][int(location[-1])-1] != 0:
                 print("That cell is already occupied")
                 continue
@@ -113,7 +115,7 @@ game = [[0, 0, 0],
 
 #game introduction text
 print("Welcome to the Tic Tac Toe game!\n")
-draw_board()
+
 
 moves = 0
 
@@ -121,7 +123,7 @@ while True:
     player_move("X")
     moves += 1
     print(game[0],"\n",game[1],"\n",game[2])
-    #draw_board(3,3)
+    print(location)
     if check_winner() == True:
         break
     if moves == 9:
