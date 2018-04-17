@@ -76,11 +76,11 @@ def check_winner():
         x += 1
 
     for x in range(0,3):
-        if game[x][0] == "Y" and game[x][1] == "Y" and game[x][2] == "Y":
+        if game[x][0] == "O" and game[x][1] == "O" and game[x][2] == "O":
             print("win row {}, player {}".format(x+1,"Y"))
             win = True
-        if game[0][x] == "Y" and game[1][x] == "Y" and game[2][x] == "Y":
-            print("win column {}, player {}".format(x+1,"Y"))
+        if game[0][x] == "O" and game[1][x] == "O" and game[2][x] == "O":
+            print("win column {}, player {}".format(x+1,"O"))
             win = True
         x += 1
 
@@ -91,11 +91,11 @@ def check_winner():
     if game[2][0] == "X" and game[1][1] == "X" and game[0][2] == "X":
         print("win up diagonal, player {}.".format("X"))
         win = True
-    if game[0][0] == "Y" and game[1][1] == "Y" and game[2][2] == "Y":
+    if game[0][0] == "O" and game[1][1] == "O" and game[2][2] == "O":
         print("win down diagonal, player {}.".format("Y"))
         win = True
-    if game[2][0] == "Y" and game[1][1] == "Y" and game[0][2] == "Y":
-        print("win up diagonal, player {}.".format("Y"))
+    if game[2][0] == "O" and game[1][1] == "O" and game[0][2] == "O":
+        print("win up diagonal, player {}.".format("O"))
         win = True
       
 
@@ -131,6 +131,11 @@ while True:
     player_move("O")
     moves += 1
     print(game[0],"\n",game[1],"\n",game[2])
+    if check_winner() == True:
+        break
+    if moves == 9:
+        print("No more moves available.")
+        break    
 
 print("Game over.")
 
