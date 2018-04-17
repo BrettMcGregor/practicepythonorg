@@ -45,7 +45,12 @@ def check_letter(guess, word, correct_guesses):
         print("Incorrect.")
 
 def print_word(correct_guesses, word):
-    print("\n\n"+"_ "*len(word))
+    for letter in word:
+        if letter in correct_guesses:
+            print(letter, end = "")
+        else:
+            print("_ ", end = "")
+        
             
 word = "evaporate"
 
@@ -65,6 +70,8 @@ while True:
     #if not in word then print feedback to user
     check_letter(guess,word, correct_guesses)
     print("correct guesses: ",correct_guesses)
+    
+print("Game over")
 
 
 #if in word then print the letters with the remaining blanks
