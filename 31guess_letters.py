@@ -52,7 +52,6 @@ def print_word(correct_guesses, word):
             
 word = "evaporate"
 
-#welcome message and prompt for user to guess a letter
 print("Welcome to Hangman!")
 previous_guesses = []
 correct_guesses = []
@@ -68,6 +67,7 @@ while True:
     #check if letter is in word
     check_letter(guess,word, correct_guesses, found)
 
+    #check if whole word found
     if len(found) == len(word):
         if len(previous_guesses)-len(correct_guesses) == 1:
             print("Congrats! You guessed the word. You had {} incorrect guess."
