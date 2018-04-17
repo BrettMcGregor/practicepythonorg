@@ -34,23 +34,21 @@ def check_previous(guess, previous_guesses):
     else:
         previous_guesses.append(guess)
 
-def check_letter(guess, word, correct_guesses):
+def check_letter(guess, word, correct_guesses, found):
     for letter in word:
         if guess == letter:
+            found.append(guess)
             if guess not in correct_guesses:
                 correct_guesses.append(letter)
-            else:
-                pass
     if guess not in word:
-        print("Incorrect.")
+        print("Incorrect. Try again.")
 
 def print_word(correct_guesses, word):
     for letter in word:
         if letter in correct_guesses:
             print(letter, end = "")
         else:
-            print("_ ", end = "")
-        
+            print("_ ", end = "")   
             
 word = "evaporate"
 
@@ -58,27 +56,28 @@ word = "evaporate"
 print("Welcome to Hangman!")
 previous_guesses = []
 correct_guesses = []
+found = []
 
 while True:
     print_word(correct_guesses, word)
     guess = input("\nGuess a letter>  ")
-    #keep track of previous letters guessed and report an error if the player guesses previous
-    #letter
+    
+    #keep track of previous letters guessed
     check_previous(guess, previous_guesses)
-    print("guesses so far: ",previous_guesses)
+    
     #check if letter is in word
-    #if not in word then print feedback to user
-    check_letter(guess,word, correct_guesses)
-    print("correct guesses: ",correct_guesses)
+    check_letter(guess,word, correct_guesses, found)
+
+    if len(found) == len(word):
+        if len(previous_guesses)-len(correct_guesses) == 1:
+            print("Congrats! You guessed the word. You had {} incorrect guess."
+              .format(len(previous_guesses)-len(correct_guesses)))
+            break
+        else:
+            print("Congrats! You guessed the word. You had {} incorrect guesses."
+                  .format(len(previous_guesses)-len(correct_guesses)))
+            break
     
 print("Game over")
 
-
-#if in word then print the letters with the remaining blanks
-
-
-
-
-
-#when all letters guessed print win message and end game
 
