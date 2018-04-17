@@ -50,12 +50,11 @@ def player_move(player):
 #play()
 #----------------------------------------------------------------------------
 #draw board function can take user input as argument
-def draw_board(width, height):
-    for i in range(0, height):
-        print(" ---" * width)
-        print("|   " * (width + 1))
-        height -= 1
-    print(" ---" * width)
+def draw_board():
+        print(" _" * 3)
+        for i in range (1,4):
+            print("|_" * 3+"|")
+   
 
 #----------------------------------------------------------------------------
 #Check for winner
@@ -114,7 +113,7 @@ game = [[0, 0, 0],
 
 #game introduction text
 print("Welcome to the Tic Tac Toe game!\n")
-#draw_board(3,3)
+draw_board()
 
 moves = 0
 
