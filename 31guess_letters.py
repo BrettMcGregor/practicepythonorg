@@ -43,6 +43,9 @@ def check_letter(guess, word, correct_guesses):
                 pass
     if guess not in word:
         print("Incorrect.")
+
+def print_word(correct_guesses, word):
+    print("\n\n"+"_ "*len(word))
             
 word = "evaporate"
 
@@ -50,26 +53,25 @@ word = "evaporate"
 print("Welcome to Hangman!")
 previous_guesses = []
 correct_guesses = []
+
 while True:
-    guess = input("Guess a letter>  ")
+    print_word(correct_guesses, word)
+    guess = input("\nGuess a letter>  ")
     #keep track of previous letters guessed and report an error if the player guesses previous
     #letter
     check_previous(guess, previous_guesses)
-    print(previous_guesses)
+    print("guesses so far: ",previous_guesses)
     #check if letter is in word
+    #if not in word then print feedback to user
     check_letter(guess,word, correct_guesses)
-    print(correct_guesses)
-    for letter in word:
-        for guess in correct_guesses:
-            if guess == letter:
-                print(letter)
+    print("correct guesses: ",correct_guesses)
 
 
 #if in word then print the letters with the remaining blanks
 
-#if not in word then print feedback to user
 
 
 
-#when all letters guessed print win message
+
+#when all letters guessed print win message and end game
 
