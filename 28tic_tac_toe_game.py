@@ -34,9 +34,7 @@ def player_move(player):
     print("\nPlayer {} move:".format(player))
     while True:
         try:
-            location = []
-            location.append(input("\nEnter row, column coordinates (r,c) >"))
-            return location
+            location = (input("\nEnter row, column coordinates (r,c) >"))
             if game[int(location[0])-1][int(location[-1])-1] != 0:
                 print("That cell is already occupied")
                 continue
