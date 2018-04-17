@@ -33,23 +33,36 @@ def check_previous(guess, previous_guesses):
         print("You have already guessed that letter! Try again.")
     else:
         previous_guesses.append(guess)
-        return previous_guesses
 
-
-word = "EVAPORATE"
+def check_letter(guess, word, correct_guesses):
+    for letter in word:
+        if guess == letter:
+            if guess not in correct_guesses:
+                correct_guesses.append(letter)
+            else:
+                pass
+    if guess not in word:
+        print("Incorrect.")
+            
+word = "evaporate"
 
 #welcome message and prompt for user to guess a letter
 print("Welcome to Hangman!")
 previous_guesses = []
+correct_guesses = []
 while True:
     guess = input("Guess a letter>  ")
-
     #keep track of previous letters guessed and report an error if the player guesses previous
     #letter
     check_previous(guess, previous_guesses)
     print(previous_guesses)
-
-#check if letter is in word
+    #check if letter is in word
+    check_letter(guess,word, correct_guesses)
+    print(correct_guesses)
+    for letter in word:
+        for guess in correct_guesses:
+            if guess == letter:
+                print(letter)
 
 
 #if in word then print the letters with the remaining blanks
