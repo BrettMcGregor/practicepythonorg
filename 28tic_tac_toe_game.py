@@ -35,7 +35,6 @@ def player_move(player):
     while True:
         try:
             location = input("\nEnter row, column coordinates (r,c) >")
-            return location
             if game[int(location[0])-1][int(location[-1])-1] != 0:
                 print("That cell is already occupied")
                 continue
@@ -123,7 +122,7 @@ while True:
     player_move("X")
     moves += 1
     print(game[0],"\n",game[1],"\n",game[2])
-    draw_board(3,3)
+    #draw_board(3,3)
     if check_winner() == True:
         break
     if moves == 9:
