@@ -115,7 +115,7 @@ game = [[0, 0, 0],
 
 #game introduction text
 print("Welcome to the Tic Tac Toe game!\n")
-draw_board(3,3)
+#draw_board(3,3)
 
 moves = 0
 
