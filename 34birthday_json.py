@@ -1,24 +1,19 @@
 """
-This exercise is Part 1 of 4 of the birthday data exercise series. 
+In the previous exercise we created a dictionary of famous scientists’ birthdays.
+In this exercise, modify your program from Part 1 to load the birthday dictionary from
+a JSON file on disk, rather than having the dictionary defined in the program.
 
-For this exercise, we will keep track of when our friend’s birthdays are, and be able to
-find that information based on their name. Create a dictionary (in your file) of names and
-birthdays. When you run your program it should ask the user to enter a name, and return
-the birthday of that person back to them. The interaction should look something like this:
-
->>> Welcome to the birthday dictionary. We know the birthdays of:
-Albert Einstein
-Benjamin Franklin
-Ada Lovelace
->>> Who's birthday do you want to look up?
-Benjamin Franklin
->>> Benjamin Franklin's birthday is 01/17/1706.
-
-Happy coding!
+Bonus: Ask the user for another scientist’s name and birthday to add to the dictionary,
+and update the JSON file you have on disk with the scientist’s name. If you run the program
+multiple times and keep adding new names, your JSON file should keep getting bigger and
+bigger.
 """
 
-birthdays = {"Brett": "21/04/1976", "Andrea": "27/03/1975", "Devon":"15/07/2010",
-             "Ryan":"02/07/2013"}
+import json
+
+with open("birthdays.json", "r") as f:
+    birthdays = json.load(f)
+
 keys = birthdays.keys()
 
 for key in keys:
@@ -27,3 +22,10 @@ selection = input("Enter a name to find out that persons birthday.\n")
 
 print(birthdays[selection])
 
+new_key = input("Enter a name to add to the birthday dictionary:")
+new_value = input("Enter a birthday to add to the birthday dictionary:")
+
+birthdays.update({new_key: new_value})
+
+with open("birthdays.json", "w") as f:
+    json.dump(birthdays, f)
