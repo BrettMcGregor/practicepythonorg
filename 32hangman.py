@@ -22,18 +22,7 @@ Optional additions:
 Your solution will be a lot cleaner if you make use of functions to help you!
 """
 
-
-
-
-
-#pick a word
 import random
-
-with open("sowpods.txt", "r") as f:
-    words = list(f)
-print(random.choice(words).strip())
-
-
 
 #game 
 def check_previous(guess, previous_guesses):
@@ -52,38 +41,77 @@ def check_letter(guess, word, correct_guesses, found):
         print("Incorrect. Try again.")
 
 def print_word(correct_guesses, word):
+    print("")
     for letter in word:
         if letter in correct_guesses:
             print(letter, end = "")
         else:
-            print("_ ", end = "")   
-            
-word = "evaporate"
+            print("_ ", end = "")
+    print("")
 
-print("Welcome to Hangman!")
-previous_guesses = []
-correct_guesses = []
-found = []
+def play_again():
+    replay = input("Would you like to play again? (Y/n) > ")
+    if replay.upper() == "Y":
+        game()
+    elif replay.upper() == "N":
+        print("OK. See you next time.")
+        return False
+    else:
+        print("Sorry I didn't understand that. Try again.")
+        play_again()
 
-while True:
+def check_valid(guess):
+    if guess.isalpha() == False:
+        print("I did not recognise that. Please try again")
+        return False
+
+
+def game():
+    print("Welcome to Hangman!")
+    previous_guesses = []
+    correct_guesses = []
+    found = []
+    done = False
+    #get a word from the list
+    with open("sowpods.txt", "r") as f:
+        words = list(f)
+    word = (random.choice(words).strip()).lower()
+
     print_word(correct_guesses, word)
-    guess = input("\nGuess a letter>  ")
-    
-    #keep track of previous letters guessed
-    check_previous(guess, previous_guesses)
-    
-    #check if letter is in word
-    check_letter(guess,word, correct_guesses, found)
 
-    #check if whole word found
-    if len(found) == len(word):
-        if len(previous_guesses)-len(correct_guesses) == 1:
-            print("Congrats! You guessed the word. You had {} incorrect guess."
-              .format(len(previous_guesses)-len(correct_guesses)))
+    while True:
+        if len(previous_guesses) - len(correct_guesses) == 6:
+            print("Sorry, you have had 6 incorrect guesses.")
             break
         else:
-            print("Congrats! You guessed the word. You had {} incorrect guesses."
+            print("Incorrect guesses remaining: {}"
+                  .format(6-len(previous_guesses)+len(correct_guesses)))
+        print("Previous guesses: \n",previous_guesses)
+        guess = (input("\nGuess a letter>  ")).lower()
+        check_valid(guess)
+        
+                  
+        #keep track of previous letters guessed
+        check_previous(guess, previous_guesses)
+        
+        #check if letter is in word
+        check_letter(guess,word, correct_guesses, found)
+
+        print_word(correct_guesses, word)
+        
+        #check if whole word found
+        if len(found) == len(word):
+            if len(previous_guesses)-len(correct_guesses) == 1:
+                print("Congrats! You guessed the word. You had {} incorrect guess."
                   .format(len(previous_guesses)-len(correct_guesses)))
-            break
+                break
+            else:
+                print("Congrats! You guessed the word. You had {} incorrect guesses."
+                      .format(len(previous_guesses)-len(correct_guesses)))
+                break
+    print("Game over")
     
-print("Game over")
+
+game()    
+if play_again() == False:
+    exit
