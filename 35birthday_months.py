@@ -21,6 +21,19 @@ with open("birthdays.json", "r") as f:
 keys = birthdays.keys()
 values = birthdays.values()
 
+month_dict = {"01":"January",
+              "02":"February",
+              "03":"March",
+              "04":"April",
+              "05":"May",
+              "06":"June",
+              "07":"July",
+              "08":"August",
+              "09":"September",
+              "10":"October",
+              "11":"November",
+              "12":"December"}
+
 birthdates = []
 months = []
 count = []
@@ -39,12 +52,17 @@ for item in months:
     count.append(item[0])
 
 c = Counter(count)
-print(c)
+c = dict(c)
 
-
-
-  
-selection = input("\nEnter a name to find out that persons birthday.\n")
+print("\nNumber of birthday occurences in each month:\n")
+for month in c:
+    print(month_dict[month],c[month])
+print("\n"*2)
+print("Known birthdays:\n")
+for key in keys:
+    print(key)
+    
+selection = input("\nEnter a name to find out that persons birthday.\n> ")
 
 print(birthdays[selection])
 
