@@ -50,11 +50,11 @@ def print_word(correct_guesses, word):
     print("")
 
 def play_again():
-    replay = input("Would you like to play again? (Y/n) > ")
+    replay = input("\nWould you like to play again? (Y/n) > ")
     if replay.upper() == "Y":
         game()
     elif replay.upper() == "N":
-        print("OK. See you next time.")
+        print("\nOK. See you next time.")
         return False
     else:
         print("Sorry I didn't understand that. Try again.")
@@ -67,7 +67,7 @@ def check_valid(guess):
 
 
 def game():
-    print("Welcome to Hangman!")
+    print("\nWelcome to Hangman!")
     previous_guesses = []
     correct_guesses = []
     found = []
@@ -109,7 +109,7 @@ def game():
                 print("Congrats! You guessed the word. You had {} incorrect guesses."
                       .format(len(previous_guesses)-len(correct_guesses)))
                 break
-    print("Game over")
+    print("Game over.")
     
 
 game()    
